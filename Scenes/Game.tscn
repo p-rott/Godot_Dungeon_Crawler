@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Map/MapController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/EnemyController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/B.ogg" type="AudioStream" id=5]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="MapController" parent="." instance=ExtResource( 2 )]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="EnemyController" parent="." instance=ExtResource( 4 )]
+
+[node name="AudioMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -6.933
+[connection signal="sendMessageToPlayer" from="MapController" to="Player" method="_on_MapController_sendMessageToPlayer"]
+[connection signal="notifyEnemyControllerOfBulletsShot" from="Player" to="EnemyController" method="_on_Player_notifyEnemyControllerOfBulletsShot"]
+[connection signal="notifyMapOfBorderHit" from="Player" to="MapController" method="_on_Player_notifyMapOfBorderHit"]
+[connection signal="notifyMapOfBorderHit" from="Player" to="EnemyController" method="_on_Player_notifyMapOfBorderHit"]
+[connection signal="notifygameOfExitHit" from="Player" to="." method="_on_Player_notifygameOfExitHit"]
+[connection signal="notifygameOfGameOver" from="Player" to="." method="_on_Player_notifygameOfGameOver"]
+[connection signal="enemyKilled" from="EnemyController" to="Player" method="_on_EnemyController_enemyKilled"]
+[connection signal="spawnPowerup" from="EnemyController" to="MapController" method="_on_EnemyController_spawnPowerup"]

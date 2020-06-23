@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scenes/Map/TileStart.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Map/TilesetGround.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/Map/TilesetRocks.tres" type="TileSet" id=3]
+[ext_resource path="res://Scenes/Map/TilesetBlocks.tres" type="TileSet" id=4]
+[ext_resource path="res://Scenes/Map/TilesetPlants.tres" type="TileSet" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float lightFactor = 0.4;
+
+void fragment(){
+  COLOR = texture(TEXTURE, UV);
+  COLOR = COLOR * lightFactor;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/lightFactor = 0.4
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( -656.599, 340.642 )
+b = Vector2( -2.88831, 12.1999 )
+
+[sub_resource type="SegmentShape2D" id=4]
+a = Vector2( 644.476, 340.642 )
+
+[sub_resource type="SegmentShape2D" id=5]
+a = Vector2( -651.839, 342.229 )
+b = Vector2( 1.8717, 673.844 )
+
+[sub_resource type="SegmentShape2D" id=6]
+a = Vector2( 0.285034, 670.671 )
+b = Vector2( 647.649, 345.402 )
+
+[node name="Tile" type="StaticBody2D"]
+material = SubResource( 2 )
+script = ExtResource( 1 )
+
+[node name="Ground" type="TileMap" parent="."]
+use_parent_material = true
+mode = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 64, 32 )
+format = 1
+
+[node name="Rocks" type="TileMap" parent="."]
+use_parent_material = true
+position = Vector2( 0, 1 )
+mode = 1
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 64, 32 )
+format = 1
+
+[node name="Blocks" type="TileMap" parent="."]
+use_parent_material = true
+mode = 1
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 64, 32 )
+format = 1
+
+[node name="Plants" type="TileMap" parent="."]
+use_parent_material = true
+mode = 1
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 64, 32 )
+format = 1
+
+[node name="BorderTopLeft" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="BorderTopRight" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="BorderBottomLeft" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="BorderBottomRight" type="CollisionShape2D" parent="."]
+shape = SubResource( 6 )

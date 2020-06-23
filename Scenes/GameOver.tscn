@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/GameOver.gd" type="Script" id=1]
+
+[node name="GameOver" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -191.5
+margin_top = -74.5
+margin_right = 191.5
+margin_bottom = -59.5
+text = "Game over! You killed 0 enemies and reached level 0!"
+uppercase = true
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.5
+margin_top = 56.0
+margin_right = 32.5
+margin_bottom = 76.0
+text = "Try again!"

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ability.wav-8f169b77ad4c6e34948fed441a2b118a.sample"
+
+[deps]
+
+source_file="res://sounds/ability.wav"
+dest_files=[ "res://.import/ability.wav-8f169b77ad4c6e34948fed441a2b118a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
